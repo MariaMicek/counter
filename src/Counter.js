@@ -15,7 +15,11 @@ const styles = {
 
 class Counter extends Component {
   state = {
-    number: this.props.number
+    number: JSON.parse(localStorage.getItem('counter')) || this.props.number
+  }
+
+  saveNumber(){
+    localStorage.setItem('counter', JSON.stringify(this.state.number))
   }
 
   inc1(){
@@ -39,6 +43,8 @@ class Counter extends Component {
   }
 
   render() {
+    this.saveNumber()
+    
     return (
       <div
         style={styles.container}
